@@ -26,20 +26,20 @@ public class HeroButton : MonoBehaviour
 
     private void Start()
     {
-        DataController.GetInstance().LoadUpgradeItem(this);
+        DataController.Instance.LoadUpgradeItem(this);
         StartCoroutine("AddGoldLoop");
         UpdateUI();
     }
     public void PurchasedItem()
     {
-        if (DataController.GetInstance().gold >= currentCost)
+        if (DataController.Instance.gold >= currentCost)
         {
             isPurchased = true;
-            DataController.GetInstance().gold -= currentCost;
+            DataController.Instance.gold -= currentCost;
             level++;
             UpdateItem();
             UpdateUI();
-            DataController.GetInstance().SaveUpgradeItem(this);
+            DataController.Instance.SaveUpgradeItem(this);
             
 
         }
@@ -51,7 +51,7 @@ public class HeroButton : MonoBehaviour
         {
             if(isPurchased)
             {
-                DataController.GetInstance().gold +=goldPerSec;
+                DataController.Instance.gold +=goldPerSec;
                 
             }
             yield return new WaitForSeconds(1.0f);

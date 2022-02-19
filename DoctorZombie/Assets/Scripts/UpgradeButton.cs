@@ -39,7 +39,7 @@ public class UpgradeButton : MonoBehaviour
     {
         instance = this; //
 
-        DataController.GetInstance().LoadUpgradeButton(this);
+        DataController.Instance.LoadUpgradeButton(this);
         
         UpdateUI();
 
@@ -47,14 +47,14 @@ public class UpgradeButton : MonoBehaviour
 
     public void PurChaseUpgrade()
     {
-        if (DataController.GetInstance().gold >= currentCost)
+        if (DataController.Instance.gold >= currentCost)
         {
-            DataController.GetInstance().gold -= currentCost;
+            DataController.Instance.gold -= currentCost;
             level++;
-            DataController.GetInstance().AddGoldPerClick(goldByUpgrade);
+            DataController.Instance.AddGoldPerClick(goldByUpgrade);
             UpdateUpgrade();  //업그레이드 할때마다 금액을 업데이트 해준다. 
             UpdateUI();
-            DataController.GetInstance().SaveUpgradeButton(this);
+            DataController.Instance.SaveUpgradeButton(this);
         }
     }
 

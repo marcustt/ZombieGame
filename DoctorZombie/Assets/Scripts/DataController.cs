@@ -6,18 +6,23 @@ public class DataController : MonoBehaviour
 {
     //static는 단 하나만 존재하고 클래스 이름에서 바로 접근 가능하다 
     private static DataController instance;
-    public static DataController GetInstance()
+
+    //get만 만들어서 가져올수는 있지만 set이 없으므로 저장은 할수 없다
+    public static DataController Instance
     {
-        if(instance == null)
+        get
         {
-            instance = FindObjectOfType<DataController>();
-            if(instance == null)
+            if (instance == null)
             {
-                GameObject container = new GameObject("Datacontroller");
-                instance = container.AddComponent<DataController>();
+                instance = FindObjectOfType<DataController>();
+                if (instance == null)
+                {
+                    GameObject container = new GameObject("Datacontroller");
+                    instance = container.AddComponent<DataController>();
+                }
             }
+            return instance;
         }
-        return instance;
     }
 
     private HeroButton[] herobuttons;
