@@ -47,9 +47,9 @@ public class UpgradeButton : MonoBehaviour
 
     public void PurChaseUpgrade()
     {
-        if (DataController.GetInstance().GetGold() >= currentCost)
+        if (DataController.GetInstance().gold >= currentCost)
         {
-            DataController.GetInstance().SubGold(currentCost);
+            DataController.GetInstance().gold -= currentCost;
             level++;
             DataController.GetInstance().AddGoldPerClick(goldByUpgrade);
             UpdateUpgrade();  //업그레이드 할때마다 금액을 업데이트 해준다. 

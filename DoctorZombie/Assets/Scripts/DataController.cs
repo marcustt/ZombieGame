@@ -22,41 +22,29 @@ public class DataController : MonoBehaviour
 
     private HeroButton[] herobuttons;
 
-    public int m_gold;
+    public int gold
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("Gold");
+        }
+        set
+        {
+            PlayerPrefs.SetInt("Gold", value);
+        }
+    }
 
     public int m_goldPerClick;
 
     private void Awake()
     {
        
-        m_gold = PlayerPrefs.GetInt("Gold");
         m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1);
 
         herobuttons =FindObjectsOfType<HeroButton>(); //배열로 오브젝트를 가져와서 합친다
     }
 
-    public int GetGold()
-    {
-        return m_gold; 
-    }
-
-    public void SetGold(int newGold)
-    {
-        m_gold = newGold;
-        PlayerPrefs.SetInt("Gold", m_gold);
-    }
-
-    public void AddGold(int newGold)
-    {
-        m_gold += newGold;
-        SetGold(m_gold);
-    }
-
-    public void SubGold(int newGold)
-    {
-        m_gold -= newGold;
-        SetGold(m_gold);
-    }
+  
 
     public int GetGoldPerClick()
     {

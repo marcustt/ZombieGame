@@ -32,10 +32,10 @@ public class HeroButton : MonoBehaviour
     }
     public void PurchasedItem()
     {
-        if (DataController.GetInstance().GetGold() >= currentCost)
+        if (DataController.GetInstance().gold >= currentCost)
         {
             isPurchased = true;
-            DataController.GetInstance().SubGold(currentCost);
+            DataController.GetInstance().gold -= currentCost;
             level++;
             UpdateItem();
             UpdateUI();
@@ -51,7 +51,7 @@ public class HeroButton : MonoBehaviour
         {
             if(isPurchased)
             {
-                DataController.GetInstance().AddGold(goldPerSec);
+                DataController.GetInstance().gold +=goldPerSec;
                 
             }
             yield return new WaitForSeconds(1.0f);
