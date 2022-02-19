@@ -51,7 +51,7 @@ public class UpgradeButton : MonoBehaviour
         {
             DataController.Instance.gold -= currentCost;
             level++;
-            DataController.Instance.AddGoldPerClick(goldByUpgrade);
+            DataController.Instance.goldPerClick += goldByUpgrade;
             UpdateUpgrade();  //업그레이드 할때마다 금액을 업데이트 해준다. 
             UpdateUI();
             DataController.Instance.SaveUpgradeButton(this);

@@ -27,46 +27,46 @@ public class DataController : MonoBehaviour
 
     private HeroButton[] herobuttons;
 
-    public int gold
+    public long gold
     {
         get
         {
-            return PlayerPrefs.GetInt("Gold");
+            //처음에는 빈 문장이 오므로 만약 비어있다면 숫자 0을 반환해준다. 
+            if(!PlayerPrefs.HasKey("Gold"))
+            { return 0;
+            }
+
+            string tmpGold = PlayerPrefs.GetString("Gold");
+            return long.Parse(tmpGold); //스트링을 숫자로 변경해준다.
         }
         set
         {
-            PlayerPrefs.SetInt("Gold", value);
+            PlayerPrefs.SetString("Gold", value.ToString());
         }
     }
 
-    public int m_goldPerClick;
+    public int goldPerClick
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("GoldPerClick",1);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("GoldPerClick",value);
+        }
+    }
 
     private void Awake()
     {
-       
-        m_goldPerClick = PlayerPrefs.GetInt("GoldPerClick", 1);
 
+      //  PlayerPrefs.DeleteAll();
         herobuttons =FindObjectsOfType<HeroButton>(); //배열로 오브젝트를 가져와서 합친다
     }
 
   
 
-    public int GetGoldPerClick()
-    {
-        return m_goldPerClick;
-    }
-
-    public void SetGoldPerClick(int newGoldPerClick)
-    {
-        m_goldPerClick = newGoldPerClick;
-        PlayerPrefs.SetInt("GoldPerClick", m_goldPerClick);
-    }
-
-    public void AddGoldPerClick(int newGoldPerClick)
-    {
-        m_goldPerClick += newGoldPerClick;
-        SetGoldPerClick(m_goldPerClick);
-    }
+   
 
     public void LoadUpgradeButton(UpgradeButton upgradeButton)
     {
